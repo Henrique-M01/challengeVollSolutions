@@ -1,15 +1,21 @@
 {
   "compilerOptions": {
-    "target": "es2016",  
+    "target": "es5",  
     "module": "commonjs",
     "outDir": "./build",
     "rootDir": "./src",
     "strict": true,
     "moduleResolution": "node",
-    "baseUrl": ".", 
+    "baseUrl": ".",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "paths": {
+      "*": [
+          "node_modules/*",
+          "src/types/*"
+      ],
+    }
   },
   "include": ["src/**/*"],
 }
