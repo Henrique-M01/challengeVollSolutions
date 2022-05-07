@@ -39,5 +39,9 @@ module.exports = (sequelize) => {
     },
   );
 
+  User.associate = (models) => {
+    User.hasOne(models.wallet, { foreignKey: 'id', as: 'wallet'})
+  }
+
   return User;
 };
