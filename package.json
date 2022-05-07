@@ -4,6 +4,7 @@
   "description": "Desafio tecnico processo seletivo Voll Solutions",
   "main": "index.js",
   "scripts": {
+    "prestart": "tsc",
     "start": "ts-node src/Server.ts",
     "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all"
   },
