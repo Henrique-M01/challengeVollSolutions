@@ -3,6 +3,6 @@ import loginRouter from './LoginRouter';
 
 const indexRouter = Router();
 
-indexRouter.use(loginRouter);
+indexRouter.use('/login', loginRouter);
 
 export default indexRouter
