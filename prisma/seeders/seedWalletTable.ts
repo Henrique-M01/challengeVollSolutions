@@ -6,7 +6,7 @@ async function seedWalletTable() {
     update: {},
     create: {
       userId: 1,
-      quantity: 5
+      quantity: 571
     }
   });
 
@@ -24,7 +24,7 @@ async function seedWalletTable() {
     update: {},
     create: {
       userId: 3,
-      quantity: 25
+      quantity: 254
     }
   });
 }
