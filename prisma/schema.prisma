@@ -1,0 +1,33 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model products {
+  id          Int    @id @default(autoincrement())
+  name        String @db.VarChar(255)
+  description String @db.VarChar(255)
+  quantity    Int
+}
+
+model users {
+  id       Int      @id @default(autoincrement())
+  name     String   @db.VarChar(255)
+  email    String   @db.VarChar(255)
+  password String   @db.VarChar(255)
+  role     String   @db.VarChar(255)
+  wallet   wallet[]
+}
+
+model wallet {
+  id       Int   @id @default(autoincrement())
+  userId   Int
+  quantity Int
+  users    users @relation(fields: [userId], references: [id], onDelete: Cascade, map: "wallet_ibfk_1")
+
+  @@index([userId], map: "userId")
+}
