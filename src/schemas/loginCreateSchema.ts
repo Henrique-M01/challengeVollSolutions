@@ -3,7 +3,7 @@ import * as Joi from 'joi';
 const INCORRECT = 'Incorrect email or password';
 const MUST_BE_FILED = 'All fields must be filled';
 
-const loginSchema = Joi.object({
+const loginCreateSchema = Joi.object({
   name: Joi.string().min(3).required().messages({
     'string.min': INCORRECT,
     'any.required': MUST_BE_FILED
@@ -20,4 +20,4 @@ const loginSchema = Joi.object({
   }),
 });
 
-export default loginSchema;
+export default loginCreateSchema;
