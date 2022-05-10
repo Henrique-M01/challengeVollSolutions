@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import IErrorRequestWithDetails from '../interface/IErrorRequest';
 
-function errorMIddleware(
+function errorMiddleware(
   err: IErrorRequestWithDetails,
   _req: Request,
   res: Response,
@@ -20,4 +20,4 @@ function errorMIddleware(
   return res.status(500).json(err.message);
 }
 
-export default errorMIddleware;
+export default errorMiddleware;
