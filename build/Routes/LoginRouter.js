@@ -7,4 +7,5 @@ var express_1 = require("express");
 var LoginController_1 = __importDefault(require("../controllers/LoginController"));
 var loginRouter = (0, express_1.Router)();
 loginRouter.post('/create', LoginController_1.default.createLogin);
+loginRouter.post('/validate', LoginController_1.default.loginValidate);
 exports.default = loginRouter;

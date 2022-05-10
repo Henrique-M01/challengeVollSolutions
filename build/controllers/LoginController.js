@@ -64,4 +64,21 @@ function createLogin(req, res, next) {
     });
 }
 ;
-exports.default = { createLogin: createLogin };
+function loginValidate(req, res, next) {
+    return __awaiter(this, void 0, void 0, function () {
+        var _a, email, password, validateLogin;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    _a = req.body, email = _a.email, password = _a.password;
+                    return [4 /*yield*/, LoginService_1.default.loginValidate(email, password)];
+                case 1:
+                    validateLogin = _b.sent();
+                    if (!validateLogin)
+                        return [2 /*return*/, res.status(404).json({ message: 'Email or password invalid' })];
+                    return [2 /*return*/, res.status(200).json(validateLogin)];
+            }
+        });
+    });
+}
+exports.default = { createLogin: createLogin, loginValidate: loginValidate };

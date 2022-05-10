@@ -21,9 +21,23 @@ async function createLogin(name: string, email: string, password: string) {
 
   if (!create) return null;
 
-  const token = jwtGenerator({ name, role: create.role, coins: create.coins })
-
-  return { token, role: create.role, coins: create.coins };
+  return { role: create.role, coins: create.coins };
 }
 
-export default { createLogin };
+async function loginValidate(email: string, password: string) {
+  const dataDb = await prisma.users.findFirst({ where: { email }});
+
+  if (!dataDb) return null;
+
+  const passwordDb = dataDb.password;
+
+  const verifyPassword = await bcrypt.compare(password, passwordDb);
+
+  if (!verifyPassword) return null;
+
+  const token = jwtGenerator({ name: dataDb.name, role: dataDb.role, coins: dataDb.coins })
+
+  return { token, name: dataDb.name, role: dataDb.role, coins: dataDb.coins }
+}
+
+export default { createLogin, loginValidate };
