@@ -6,6 +6,7 @@ const loginRouter = Router();
 
 loginRouter.post('/create',
   loginValidate.validateLoginCreate , LoginController.createLogin );
+  
 loginRouter.post('/validate',
   loginValidate.validateLoginValidate , LoginController.loginValidate );
 

@@ -32,4 +32,19 @@ async function getById(req: Request, res: Response, next: NextFunction) {
   }
 }
 
-export default { getAllProducts, getById };
+async function deleteProduct(req: Request, res: Response, next: NextFunction) {
+  try {
+    const { id } = req.params;
+
+    const deletedProduct = await ProductsService.deleteProduct(Number(id));
+
+    if (deletedProduct === null) return res.status(401).json({
+      message: 'Product does not exist in the database' });
+
+    return res.status(201).json({ message: 'Successfully deleted' })
+  } catch (error) {
+    next(error);
+  }
+}
+
+export default { getAllProducts, getById, deleteProduct };

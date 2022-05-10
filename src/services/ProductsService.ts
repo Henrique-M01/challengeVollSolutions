@@ -18,4 +18,14 @@ async function getById(id: number) {
   return products;
 }
 
-export default { getAllProducts, getById };
+async function deleteProduct(id: number) {
+  const products = await prisma.products.findUnique({ where: { id }});
+
+  if (!products) return null;
+
+  if (products) {
+    await prisma.products.delete({ where: { id }});
+  }
+}
+
+export default { getAllProducts, getById, deleteProduct };
