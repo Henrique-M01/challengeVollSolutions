@@ -85,10 +85,29 @@ async function updateProductsQuantity(req: Request, res: Response, next: NextFun
   }
 }
 
+async function updateBySale(req: Request, res: Response, next: NextFunction) {
+  try {
+    const { id } = req.params;
+    
+    const update = await ProductsService.updateBySale(Number(id));
+
+    if (update === null) return res.status(404)
+      .json({ message: 'Product not found' });
+
+    if (update === false) return res.status(400)
+      .json({ message: 'Sold out product' })
+
+    return res.status(200).json(update);
+  } catch (error) {
+    next(error)
+  }
+}
+
 export default {
   getAllProducts,
   getById,
   deleteProduct,
   createProduct,
   updateProductsQuantity,
+  updateBySale,
 };

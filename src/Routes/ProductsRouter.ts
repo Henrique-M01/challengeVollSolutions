@@ -18,6 +18,9 @@ productsRouter.post('/:id',
   authentication, productsValidate.validateLoginCreate, ProductsController.createProduct);
 
 productsRouter.put('/:id', 
-  authentication, ProductsController.updateProductsQuantity)
+  authentication, ProductsController.updateProductsQuantity);
+
+productsRouter.put('/sale/:id',
+  ProductsController.updateBySale)
 
 export default productsRouter;

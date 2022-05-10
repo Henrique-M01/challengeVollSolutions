@@ -62,10 +62,30 @@ async function updateProductsQuantity(quantity: number, id: number) {
   return updated;
 }
 
+async function updateBySale(id: number) {
+  const product = await prisma.products.findUnique({ where: { id } });
+
+  if (!product) return null;
+
+  if (product.quantity < 1) return false;
+
+  if (product) {
+    const update = await prisma.products.update({
+      data: { quantity: product.quantity -1 },
+      where: { id },
+    })
+
+    if(!update) return null;
+
+    return update;
+  }
+}
+
 export default {
   getAllProducts,
   getById,
   deleteProduct,
   createProduct,
   updateProductsQuantity,
+  updateBySale,
 };
