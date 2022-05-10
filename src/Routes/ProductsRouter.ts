@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import authentication from '../middlewares/authentication';
 import ProductsController from '../controllers/ProductsController';
+import productsValidate from '../middlewares/productsValidate';
 
 const productsRouter = Router();
 
@@ -14,6 +15,6 @@ productsRouter.delete('/:id',
   authentication, ProductsController.deleteProduct);
 
 productsRouter.post('/:id',
-  authentication, ProductsController.createProduct);
+  authentication, productsValidate.validateLoginCreate, ProductsController.createProduct);
 
 export default productsRouter;
