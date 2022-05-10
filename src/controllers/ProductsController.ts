@@ -14,4 +14,22 @@ async function getAllProducts(_req: Request, res: Response, next: NextFunction) 
   }
 }
 
-export default { getAllProducts };
+async function getById(req: Request, res: Response, next: NextFunction) {
+  try {
+    const { id } = req.params;
+
+    const products = await ProductsService.getById(Number(id));
+
+    if (products === null) return res.status(404)
+      .json({ message: 'Products not found' });
+
+    if (products === false) return res.status(404)
+      .json({ message: 'Sold out product'});
+
+    return res.status(200).json(products);
+  } catch (error) {
+    next(error);
+  }
+}
+
+export default { getAllProducts, getById };
