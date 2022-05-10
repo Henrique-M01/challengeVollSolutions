@@ -8,7 +8,8 @@ async function seedUsersTable() {
       name: 'Jhon Doe',
       email: 'jhondoe@email.com',
       password: '$2a$10$hivelJBMidKzG4r1NTase.c08xjzEjEf2eUXsiGQFnxd83ZWIU.eO', //secret_password
-      role: 'user'
+      role: 'user',
+      coins: 37
     }
   });
 
@@ -19,7 +20,8 @@ async function seedUsersTable() {
       name: 'Henrique Silva',
       email: 'silvahenrique@email.com',
       password: '$2a$12$GTlJdM8tGJs8eAyOFtQADeem7VqeYZRh6hjwQPGwIGJWKHxdNcccO', //secret_silva
-      role: 'admin'
+      role: 'admin',
+      coins: 879
     }
   });
 
@@ -30,7 +32,8 @@ async function seedUsersTable() {
       name: 'Carol Santos',
       email: 'santos@email.com',
       password: '$2a$12$5gMrz9SWw10ZUySxWXvw9OpdPOB6skZTcczotOGbn9hvrpvkFtV82', //santos_password
-      role: 'user'
+      role: 'user',
+      coins: 87
     }
   });
 }
