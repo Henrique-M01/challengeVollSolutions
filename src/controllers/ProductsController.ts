@@ -41,10 +41,30 @@ async function deleteProduct(req: Request, res: Response, next: NextFunction) {
     if (deletedProduct === null) return res.status(401).json({
       message: 'Product does not exist in the database' });
 
-    return res.status(201).json({ message: 'Successfully deleted' })
+    return res.status(200).json({ message: 'Successfully deleted' })
   } catch (error) {
     next(error);
   }
 }
 
-export default { getAllProducts, getById, deleteProduct };
+async function createProduct(req: Request, res: Response, next: NextFunction) {
+  try {
+    const { id } = req.params;
+    const { name, description, quantity } = req.body;
+
+    const created = await ProductsService.createProduct(
+      name, description, quantity, Number(id));
+
+    if (created === null) return res.status(401)
+      .json({ message: 'Product already exists' });
+    
+    if (created === false) return res.status(401)
+      .json({ message: 'Failed to create the product' });
+
+    return res.status(201).json(created);
+  } catch (error) {
+    next(error);
+  }
+}
+
+export default { getAllProducts, getById, deleteProduct, createProduct };

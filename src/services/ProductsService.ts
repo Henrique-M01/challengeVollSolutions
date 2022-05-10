@@ -28,4 +28,27 @@ async function deleteProduct(id: number) {
   }
 }
 
-export default { getAllProducts, getById, deleteProduct };
+async function createProduct(
+  name: string,
+  description: string,
+  quantity: number,
+  id: number,
+    ) {
+  const product = await prisma.products.findUnique({ where: { id }});
+
+  if (product) return null;
+
+  if (!product) {
+    const created = await prisma.products.create({
+      data: {
+        name, description, quantity
+      }
+    });
+
+    if (!created) return false;
+
+    return created;
+  }
+}
+
+export default { getAllProducts, getById, deleteProduct, createProduct };
