@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from "express";
+import { NextFunction, Request, Response } from 'express';
 import LoginService from '../services/LoginService';
 
 async function createLogin(req: Request, res: Response, next: NextFunction) {
