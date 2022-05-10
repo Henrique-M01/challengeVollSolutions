@@ -67,4 +67,28 @@ async function createProduct(req: Request, res: Response, next: NextFunction) {
   }
 }
 
-export default { getAllProducts, getById, deleteProduct, createProduct };
+async function updateProductsQuantity(req: Request, res: Response, next: NextFunction) {
+  try {
+    const { quantity } = req.body;
+    const { id } = req.params;
+
+    const updateQuantity = await ProductsService.updateProductsQuantity(
+      quantity, Number(id));
+
+    if (updateQuantity === null) return res.status(404)
+      .json({ message: 'Product not found' });
+
+    return res.status(200)
+      .json({ message: 'Successfully update', updated: updateQuantity });
+  } catch (error) {
+    next(error);
+  }
+}
+
+export default {
+  getAllProducts,
+  getById,
+  deleteProduct,
+  createProduct,
+  updateProductsQuantity,
+};

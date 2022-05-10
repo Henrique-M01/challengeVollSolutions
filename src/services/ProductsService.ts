@@ -51,4 +51,21 @@ async function createProduct(
   }
 }
 
-export default { getAllProducts, getById, deleteProduct, createProduct };
+async function updateProductsQuantity(quantity: number, id: number) {
+  const updated = await prisma.products.update({
+    data: { quantity },
+    where: { id },
+  });
+
+  if (!updated) return null;
+
+  return updated;
+}
+
+export default {
+  getAllProducts,
+  getById,
+  deleteProduct,
+  createProduct,
+  updateProductsQuantity,
+};

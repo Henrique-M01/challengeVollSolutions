@@ -17,4 +17,7 @@ productsRouter.delete('/:id',
 productsRouter.post('/:id',
   authentication, productsValidate.validateLoginCreate, ProductsController.createProduct);
 
+productsRouter.put('/:id', 
+  authentication, ProductsController.updateProductsQuantity)
+
 export default productsRouter;
