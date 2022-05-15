@@ -32,28 +32,22 @@ async function createProduct(
   name: string,
   description: string,
   quantity: number,
-  id: number,
     ) {
-  const product = await prisma.products.findUnique({ where: { id }});
 
-  if (product) return null;
+  const created = await prisma.products.create({
+    data: {
+      name, description, quantity
+    }
+  });
 
-  if (!product) {
-    const created = await prisma.products.create({
-      data: {
-        name, description, quantity
-      }
-    });
+  if (!created) return false;
 
-    if (!created) return false;
-
-    return created;
-  }
+  return created;
 }
 
-async function updateProductsQuantity(quantity: number, id: number) {
+async function updateProducts(quantity: number, name: string, description: string, id: number) {
   const updated = await prisma.products.update({
-    data: { quantity },
+    data: { quantity, name, description },
     where: { id },
   });
 
@@ -86,6 +80,6 @@ export default {
   getById,
   deleteProduct,
   createProduct,
-  updateProductsQuantity,
+  updateProducts,
   updateBySale,
 };
