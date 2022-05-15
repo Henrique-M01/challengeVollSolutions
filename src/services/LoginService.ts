@@ -37,7 +37,7 @@ async function loginValidate(email: string, password: string) {
 
   const token = jwtGenerator({ name: dataDb.name, role: dataDb.role, coins: dataDb.coins })
 
-  return { token, name: dataDb.name, role: dataDb.role, coins: dataDb.coins }
+  return { token, name: dataDb.name, role: dataDb.role, coins: dataDb.coins, id: dataDb.id }
 }
 
 export default { createLogin, loginValidate };

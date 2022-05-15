@@ -14,11 +14,11 @@ productsRouter.get('/:id',
 productsRouter.delete('/:id',
   authentication, ProductsController.deleteProduct);
 
-productsRouter.post('/:id',
+productsRouter.post('/',
   authentication, productsValidate.validateLoginCreate, ProductsController.createProduct);
 
 productsRouter.put('/:id', 
-  authentication, ProductsController.updateProductsQuantity);
+  authentication, ProductsController.updateProducts);
 
 productsRouter.put('/sale/:id',
   ProductsController.updateBySale)

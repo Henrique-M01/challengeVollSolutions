@@ -49,11 +49,10 @@ async function deleteProduct(req: Request, res: Response, next: NextFunction) {
 
 async function createProduct(req: Request, res: Response, next: NextFunction) {
   try {
-    const { id } = req.params;
     const { name, description, quantity } = req.body;
 
     const created = await ProductsService.createProduct(
-      name, description, quantity, Number(id));
+      name, description, Number(quantity));
 
     if (created === null) return res.status(401)
       .json({ message: 'Product already exists' });
@@ -67,13 +66,13 @@ async function createProduct(req: Request, res: Response, next: NextFunction) {
   }
 }
 
-async function updateProductsQuantity(req: Request, res: Response, next: NextFunction) {
+async function updateProducts(req: Request, res: Response, next: NextFunction) {
   try {
-    const { quantity } = req.body;
+    const { quantity, name, description } = req.body;
     const { id } = req.params;
 
-    const updateQuantity = await ProductsService.updateProductsQuantity(
-      quantity, Number(id));
+    const updateQuantity = await ProductsService.updateProducts(
+      quantity, name, description, Number(id));
 
     if (updateQuantity === null) return res.status(404)
       .json({ message: 'Product not found' });
@@ -108,6 +107,6 @@ export default {
   getById,
   deleteProduct,
   createProduct,
-  updateProductsQuantity,
+  updateProducts,
   updateBySale,
 };
