@@ -53,4 +53,8 @@ npm install
 
 ## Melhorias a serem realizadas
 
+ * Adicionar tabela de vendas;
 
+ * Ampliar a cobertra de testes;
+
+ * Dentre outras melhorias... 
